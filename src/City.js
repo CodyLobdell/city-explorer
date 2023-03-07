@@ -8,7 +8,7 @@ class City extends React.Component{
   render() {
     return (
       <Card>
-        <Card.Header as="h2">{this.props.data.display_name}</Card.Header>
+        <Card.Header as="h2">{this.props.data.cityName}</Card.Header>
         <Card.Body>
           <Image src={this.props.data.cityMapUrl}></Image>
           <p>{this.props.data.errorMessage}</p>

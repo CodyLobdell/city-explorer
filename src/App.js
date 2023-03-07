@@ -10,7 +10,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       searchInput: '',
-      display_name: '',
+      cityName: '',
       latitude: 0,
       longitude: 0,
       errorMessage: '',
@@ -31,7 +31,7 @@ class App extends React.Component {
       let cityData = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchInput}&format=json`);
 
       this.setState({
-        display_name: cityData.data[0].display_name,
+        cityName: cityData.data[0].cityName,
         latitude: cityData.data[0].lat,
         longitude: cityData.data[0].lon,
         cityMapUrl: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${cityData.data[0].lat},${cityData.data[0].lon}&zoom=13`,
@@ -40,7 +40,7 @@ class App extends React.Component {
 
     } catch (error) {
       this.setState({
-        display_name: '',
+        cityName: '',
         latitude: '',
         longitude: '',
         cityMapUrl: '',
