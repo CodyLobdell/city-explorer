@@ -1,9 +1,9 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image'
-import './css/City.css'
 
-class City extends React.Component{
+
+class City extends React.Component {
 
   render() {
     return (
