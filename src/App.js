@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import Main from './Main';
 import Header from './Header';
 import 'bootstrap/dist/css/bootstrap.css';
-import Main from './Main';
+
 
 class App extends React.Component {
 
