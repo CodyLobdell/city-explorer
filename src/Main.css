@@ -1,4 +1,6 @@
 main {
+  background: rgb(53, 223, 230);
+  background: linear-gradient(90deg, rgba(53, 223, 230, 1) 6%, rgba(48, 193, 124, 1) 50%, rgba(94, 225, 240, 1) 94%);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
