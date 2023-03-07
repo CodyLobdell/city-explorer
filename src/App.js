@@ -4,7 +4,6 @@ import Main from './Main';
 import Header from './Header';
 import 'bootstrap/dist/css/bootstrap.css';
 
-
 class App extends React.Component {
 
   constructor(props) {
