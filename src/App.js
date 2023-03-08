@@ -10,11 +10,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       searchInput: '',
-      cityName: '',
-      latitude: 0,
-      longitude: 0,
+      cityData: {},
+      weatherData: [],
       errorMessage: '',
-      cityMapUrl: '',
+      showError: false,
+      showCity: false,
     }
   }
 
@@ -28,27 +28,29 @@ class App extends React.Component {
     e.preventDefault();
 
     try {
-      let cityData = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchInput}&format=json`);
+      let cityResponse = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.searchInput}&format=json`);
 
       this.setState({
-        cityName: cityData.data[0].cityName,
-        latitude: cityData.data[0].lat,
-        longitude: cityData.data[0].lon,
-        cityMapUrl: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${cityData.data[0].lat},${cityData.data[0].lon}&zoom=13`,
-        errorMessage: '',
-      },
-      )
+        cityData: cityResponse.data[0],
+        showCity: true,
+        showError: false,
+      });
 
+      console.log(cityResponse.data[0])
 
+      let coord = [cityResponse.data[0].lat, cityResponse.data[0].lon];
 
+      let weatherResponse = (await axios.get(`${process.env.REACT_APP_SERVER}/weather?lat=${coord[0]}&lon=${coord[1]}`)).data
+
+      this.setState({
+        weatherData: weatherResponse,
+      })
 
     } catch (error) {
       this.setState({
-        cityName: '',
-        latitude: '',
-        longitude: '',
-        cityMapUrl: '',
+        showError: true,
         errorMessage: error.message,
+        showCity: false,
       });
     }
   }
@@ -60,7 +62,7 @@ class App extends React.Component {
           searchSubmit={this.searchSubmit}
           searchInput={this.handleSearchInput}
         />
-        <Main
+        <Main 
           data={this.state}
         />
       </>
