@@ -6,7 +6,7 @@ class Header extends React.Component {
   render() {
     return (
       <header>
-        <h1>City Explorer</h1>
+        <h1>Welcome to City Explorer!</h1>
         <SearchForm
           searchSubmit={this.props.searchSubmit}
           searchInput={this.props.searchInput}

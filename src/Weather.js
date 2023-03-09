@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import './css/Weather.css';
 
 class Weather extends React.Component {
 

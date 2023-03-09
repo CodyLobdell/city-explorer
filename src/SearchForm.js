@@ -3,7 +3,6 @@ import { Button, Form } from 'react-bootstrap';
 import './SearchForm.css';
 
 
-
 class SearchForm extends React.Component {
 
   render() {
