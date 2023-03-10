@@ -1,14 +1,38 @@
 import React from 'react';
 import City from './City';
+import Weather from './Weather';
+import Movies from './Movies'
+import { Container, Alert } from 'react-bootstrap';
 import './Main.css'
 
-class Main extends React.Component{
+class Main extends React.Component {
 
   render() {
 
     return (
       <main>
-        <City data={this.props.data}/>
+        {(this.props.data.showError) ?
+          <Alert variant="warning">{this.props.data.errorMessage}</Alert>
+          :
+          this.props.data.showCity
+          &&
+          <>
+            <City
+              lat={this.props.data.cityData.lat}
+              lon={this.props.data.cityData.lon}
+              name={this.props.data.cityData.display_name}
+              cityUrl={this.props.data}
+            />
+            <Container>
+              <Weather
+                forecasts={this.props.data.weatherData}
+              />
+              <Movies
+                movies={this.props.data.moviesData}
+              />
+            </Container>
+          </>
+        }
       </main>
     );
   }
